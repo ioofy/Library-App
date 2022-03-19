@@ -1,4 +1,6 @@
 import { useSigninMutation } from 'api/authApi';
+import { setUser } from 'app/state/authSlice';
+import { useAppDispatch } from 'hooks/hook';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -16,11 +18,18 @@ type DataFromResponse = {
     data: {
       access_token: string;
     };
+    user: {
+      id: number;
+      name: string;
+      email: string;
+      phone_number: number | string;
+    };
   };
 };
 
 const LoginPages = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [
     signin,
@@ -60,11 +69,40 @@ const LoginPages = () => {
         'token',
         response.data.data.access_token
       );
+      localStorage.setItem(
+        'user',
+        JSON.stringify(response.data.user)
+      );
+      dispatch(
+        setUser({
+          data: {
+            data: {
+              access_token:
+                response.data.data.access_token,
+            },
+            user: {
+              id: response.data.user.id,
+              name: response.data.user.name,
+              email: response.data.user.email,
+              phone_number:
+                response.data.user.phone_number,
+            },
+          },
+        })
+      );
       navigate('/dashboard');
     }
-  }, [data, error, isError, isSuccess, navigate]);
+  }, [
+    data,
+    dispatch,
+    error,
+    isError,
+    isSuccess,
+    navigate,
+  ]);
 
   // console.log(response?.data?.data.access_token);
+  console.log(data);
 
   return (
     <div className='flex items-center justify-center min-h-screen'>
