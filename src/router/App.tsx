@@ -1,32 +1,20 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePages from 'pages/HomePages/HomePages';
-import NotFound from 'pages/404Pages/NotFound';
+import NotFoundPages from 'pages/404Pages/NotFoundPages';
 import Layout from 'layout/Layout';
-import Login from 'pages/LoginPages/Login';
-import Dashboard from 'pages/DashboardPages/Dashboard';
-import PrivateRoute from 'helpers/privateRoute';
-import { useState } from 'react';
+import LoginPages from 'pages/LoginPages/LoginPages';
+import DashboardPages from 'pages/DashboardPages/DashboardPages';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
   return (
     <Router>
       <Layout>
-        <Switch>
-          <Route path='/' component={HomePages} exact />
-          <PrivateRoute
-            isAuth={isAuth}
-            path='/dashboard'
-            component={Dashboard}
-            exact
-          />
-          <Route
-            path='/auth/login'
-            component={() => <Login setIsAuth={setIsAuth} />}
-            exact
-          />
-          <Route path='*' component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route path='/' element={<HomePages />} />
+          <Route path='*' element={<NotFoundPages />} />
+          <Route path='/auth/login' element={<LoginPages />} />
+          <Route path='/dashboard' element={<DashboardPages />} />
+        </Routes>
       </Layout>
     </Router>
   );
