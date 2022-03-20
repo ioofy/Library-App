@@ -69,10 +69,6 @@ const LoginPages = () => {
         'token',
         response.data.data.access_token
       );
-      localStorage.setItem(
-        'user',
-        JSON.stringify(response.data.user)
-      );
       dispatch(
         setUser({
           data: {

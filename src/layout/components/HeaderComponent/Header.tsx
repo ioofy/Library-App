@@ -20,7 +20,7 @@ const Header = () => {
 
   const signOut = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('persist:root');
     navigate('/auth/login');
     dispatch(defaultState());
   };
