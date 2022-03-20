@@ -10,7 +10,9 @@ const Header = () => {
     data: {
       user: { email, name },
     },
-  } = useAppSelector((state) => state.auth);
+  } = useAppSelector(
+    (state) => state.persistedReducer.auth
+  );
 
   console.log(email, name);
 
