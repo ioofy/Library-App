@@ -6,7 +6,8 @@ import {
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.jokolodang.com/api/v1',
+    baseUrl: process.env
+      .REACT_APP_API_URL as string,
   }),
   endpoints: (builder) => ({
     signin: builder.mutation({
@@ -16,7 +17,7 @@ export const authApi = createApi({
       }) => {
         return {
           url: '/authentication/login',
-          method: 'post',
+          method: 'POST',
           body,
         };
       },
