@@ -31,15 +31,16 @@ function App() {
             path='/auth/login'
             element={<LoginPages />}
           />
+          <Route
+            path='/profile'
+            element={<ProfilePages />}
+          />
           <Route element={<PrivateRoutes />}>
             <Route
               path='/dashboard'
               element={<DashboardPages />}
             />
-            <Route
-              path='/profile'
-              element={<ProfilePages />}
-            />
+
             <Route
               path='/shipping-comps'
               element={<ShippingCompsPages />}

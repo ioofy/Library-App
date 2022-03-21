@@ -82,24 +82,6 @@ const SideBar: React.FC<ContentProps> = (
                       </span>
                     </a>
                   </li>
-                  <li className='mb-8'>
-                    <a
-                      href='/profile'
-                      className='flex'
-                    >
-                      <span>
-                        <BoxIcons.BiUserCircle
-                          size={29}
-                        />
-                      </span>
-                      <span
-                        className='ml-4 text-lg'
-                        style={{ marginTop: 3 }}
-                      >
-                        My Profile
-                      </span>
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>

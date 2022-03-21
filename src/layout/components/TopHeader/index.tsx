@@ -25,29 +25,39 @@ const TopHeader = () => {
       </div>
       <div className='mr-10'>
         {name ? (
-          <div className='max-w-full flex items-center'>
-            <div className='avatar w-10'>
-              <img
-                src='https://ph-files.imgix.net/2fb378d7-0035-4a85-817c-e819d8f5dbaa.png?auto=format&auto=compress&codec=mozjpeg&cs=strip'
-                alt='avatar'
-              />
-            </div>
-            <div className='ml-4'>
-              <span className='text-xl text-white'>
-                {name}
-              </span>
-            </div>
-          </div>
-        ) : (
-          <Link to='/auth/login'>
+          <Link to='/profile'>
             <div className='max-w-full flex items-center'>
+              <div className='avatar w-10'>
+                <img
+                  src='https://ph-files.imgix.net/2fb378d7-0035-4a85-817c-e819d8f5dbaa.png?auto=format&auto=compress&codec=mozjpeg&cs=strip'
+                  alt='avatar'
+                />
+              </div>
+
+              <div className='ml-4'>
+                <span className='text-xl text-white'>
+                  {name}
+                </span>
+              </div>
+            </div>
+          </Link>
+        ) : (
+          <div className='max-w-full flex items-center'>
+            <Link to='/profile'>
+              <div className='ml-4'>
+                <span className='text-xl text-white'>
+                  Profile
+                </span>
+              </div>
+            </Link>
+            <Link to='/auth/login'>
               <div className='ml-4'>
                 <span className='text-xl text-white'>
                   Login
                 </span>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         )}
       </div>
     </div>
