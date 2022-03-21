@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
 import { useMutation } from 'react-query';
-import { ResponseMessage } from 'types/shippingComps';
+import { ResponseMessage } from 'types/declare';
 import shippingCompsService from 'api/shippingCompsApi';
 import Modal from 'components/Modal/Modal';
 import toast from 'react-hot-toast';

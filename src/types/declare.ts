@@ -27,3 +27,18 @@ export interface FormLoginProps {
 export interface ResponseMessage {
   message: string;
 }
+
+export interface DataFromResponse {
+  success: boolean;
+  data: {
+    data: {
+      access_token: string;
+    };
+    user: {
+      id: number;
+      name: string;
+      email: string;
+      phone_number: number | string;
+    };
+  };
+}

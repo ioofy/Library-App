@@ -1,4 +1,4 @@
-import { ShippingComps } from 'types/shippingComps';
+import { ShippingComps } from 'types/declare';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import shippingCompsService from 'api/shippingCompsApi';

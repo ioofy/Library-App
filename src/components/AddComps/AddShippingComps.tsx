@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   FormDataCreateProps,
   ResponseMessage,
-} from 'types/shippingComps';
+} from 'types/declare';
 import toast from 'react-hot-toast';
 import shippingCompsService from 'api/shippingCompsApi';
 

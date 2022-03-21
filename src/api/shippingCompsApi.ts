@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from 'helper/authHeader';
-import { ApiCompsProps } from 'types/shippingComps';
+import { ApiCompsProps } from 'types/declare';
 
 const apiClient = axios.create({
   baseURL: process.env

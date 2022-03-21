@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { FormDataUpdateProps } from 'types/shippingComps';
+import { FormDataUpdateProps } from 'types/declare';
 import shippingCompsService from 'api/shippingCompsApi';
 
 type EditShippingCompsProps = {

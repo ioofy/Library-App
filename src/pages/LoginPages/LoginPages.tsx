@@ -6,23 +6,11 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { patterns } from 'utils/pattern';
-import { FormLoginProps } from 'types/shippingComps';
+import {
+  DataFromResponse,
+  FormLoginProps,
+} from 'types/declare';
 import TopHeader from 'layout/components/TopHeader';
-
-type DataFromResponse = {
-  success: boolean;
-  data: {
-    data: {
-      access_token: string;
-    };
-    user: {
-      id: number;
-      name: string;
-      email: string;
-      phone_number: number | string;
-    };
-  };
-};
 
 const LoginPages = () => {
   const navigate = useNavigate();
@@ -126,7 +114,7 @@ const LoginPages = () => {
                     required: true,
                     pattern: patterns,
                   })}
-                  className='w-full px-10 py-2 mt-2 border rounded-md 
+                  className='px-12 py-2 mt-2 border rounded-md 
                 focus:outline-none focus:ring-1 focus:ring-blue-600'
                 />
               </div>
@@ -146,7 +134,7 @@ const LoginPages = () => {
                     required: true,
                     minLength: 7,
                   })}
-                  className='w-full px-10 py-2 mt-2 border rounded-md 
+                  className='px-12 py-2 mt-2 border rounded-md 
                 focus:outline-none focus:ring-1 focus:ring-blue-600'
                 />
               </div>
