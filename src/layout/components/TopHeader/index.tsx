@@ -1,4 +1,5 @@
 import { useAppSelector } from 'hooks/useGetData';
+import { Link } from 'react-router-dom';
 
 const TopHeader = () => {
   const {
@@ -38,13 +39,15 @@ const TopHeader = () => {
             </div>
           </div>
         ) : (
-          <div className='max-w-full flex items-center'>
-            <div className='ml-4'>
-              <span className='text-xl text-white'>
-                Login
-              </span>
+          <Link to='/auth/login'>
+            <div className='max-w-full flex items-center'>
+              <div className='ml-4'>
+                <span className='text-xl text-white'>
+                  Login
+                </span>
+              </div>
             </div>
-          </div>
+          </Link>
         )}
       </div>
     </div>
