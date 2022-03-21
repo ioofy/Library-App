@@ -1,16 +1,13 @@
 import { useSigninMutation } from 'api/authApi';
 import { setUser } from 'app/state/authSlice';
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch } from 'hooks/useGetData';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { patterns } from 'utils/pattern';
-
-type FormDataProps = {
-  email: string;
-  password: string;
-};
+import { FormLoginProps } from 'types/shippingComps';
+import TopHeader from 'layout/components/TopHeader';
 
 type DataFromResponse = {
   success: boolean;
@@ -46,10 +43,10 @@ const LoginPages = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataProps>();
+  } = useForm<FormLoginProps>();
 
   const onSubmitForm = (
-    values: FormDataProps
+    values: FormLoginProps
   ) => {
     signin({
       ...values,
@@ -97,77 +94,77 @@ const LoginPages = () => {
     navigate,
   ]);
 
-  // console.log(response?.data?.data.access_token);
-  console.log(data);
-
   return (
-    <div className='flex items-center justify-center min-h-screen'>
-      <div className='px-10 py-8 mt-4 text-left bg-gray-100 shadow-lg'>
-        <h3 className='text-2xl font-bold text-center block -mt-20 mb-20'>
-          Login
-        </h3>
-        <form
-          onSubmit={handleSubmit(onSubmitForm)}
-        >
-          <div className='mt-4'>
-            <div>
-              <label
-                className='block opacity-60'
-                htmlFor='email'
-              >
-                Email
-              </label>
-              {errors.email && (
-                <p className='text-red-400'>
-                  *Email required
-                </p>
-              )}
-              <input
-                type='text'
-                autoComplete='off'
-                placeholder='Example@yourmail.com'
-                {...register('email', {
-                  required: true,
-                  pattern: patterns,
-                })}
-                className='w-full px-10 py-2 mt-2 border rounded-md 
-                focus:outline-none focus:ring-1 focus:ring-blue-600'
-              />
-            </div>
+    <>
+      <TopHeader />
+      <div className='flex items-center justify-center min-h-screen'>
+        <div className='px-10 py-8 mt-4 text-left bg-gray-100 shadow-lg rounded-lg'>
+          <h3 className='text-2xl font-bold text-center block -mt-20 mb-20'>
+            Login
+          </h3>
+          <form
+            onSubmit={handleSubmit(onSubmitForm)}
+          >
             <div className='mt-4'>
-              <label className='block opacity-60'>
-                Password
-              </label>
-              {errors.password && (
-                <p className='text-red-400'>
-                  *Password required
-                </p>
-              )}
-              <input
-                type='password'
-                placeholder='7+ strong password'
-                {...register('password', {
-                  required: true,
-                  minLength: 7,
-                })}
-                className='w-full px-10 py-2 mt-2 border rounded-md 
+              <div>
+                <label
+                  className='block opacity-60'
+                  htmlFor='email'
+                >
+                  Email
+                </label>
+                {errors.email && (
+                  <p className='text-red-400'>
+                    *Email dibutuhkan
+                  </p>
+                )}
+                <input
+                  type='text'
+                  autoComplete='off'
+                  placeholder='Example@yourmail.com'
+                  {...register('email', {
+                    required: true,
+                    pattern: patterns,
+                  })}
+                  className='w-full px-10 py-2 mt-2 border rounded-md 
                 focus:outline-none focus:ring-1 focus:ring-blue-600'
-              />
-            </div>
-            <div>
-              <button
-                className='px-6 py-2 mt-8 text-white bg-blue-600 
+                />
+              </div>
+              <div className='mt-4'>
+                <label className='block opacity-60'>
+                  Password
+                </label>
+                {errors.password && (
+                  <p className='text-red-400'>
+                    *Password dibutuhkan
+                  </p>
+                )}
+                <input
+                  type='password'
+                  placeholder='7+ strong password'
+                  {...register('password', {
+                    required: true,
+                    minLength: 7,
+                  })}
+                  className='w-full px-10 py-2 mt-2 border rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-blue-600'
+                />
+              </div>
+              <div>
+                <button
+                  className='px-6 py-2 mt-8 text-white bg-blue-600 
                 rounded-full hover:bg-blue-900 w-full'
-              >
-                {isLoading
-                  ? 'Loading...'
-                  : 'Login'}
-              </button>
+                >
+                  {isLoading
+                    ? 'Loading...'
+                    : 'Login'}
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

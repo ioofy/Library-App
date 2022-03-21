@@ -1,5 +1,11 @@
 const NotFoundPages = () => {
-  return <div>NotFound</div>;
+  return (
+    <div>
+      <h1 className='text-xl text-center'>
+        Not Found
+      </h1>
+    </div>
+  );
 };
 
 export default NotFoundPages;
