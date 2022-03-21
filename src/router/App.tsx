@@ -3,16 +3,18 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import Layout from 'layout/Layout';
 import HomePages from 'pages/HomePages/HomePages';
 import NotFoundPages from 'pages/404Pages/NotFoundPages';
-import Layout from 'layout/Layout';
 import LoginPages from 'pages/LoginPages/LoginPages';
 import DashboardPages from 'pages/DashboardPages/DashboardPages';
 import ProfilePages from 'pages/ProfilePages/ProfilePages';
+import ShippingCompsPages from 'pages/ShippingCompsPages/ShippingCompsPages';
+import AddShippingCompsPages from 'pages/AddShippingCompsPages/AddShippingCompsPages';
+import EditShippingsComps from 'pages/EditShippingCompsPages/EditShippingCompsPages';
+import PrivateRoutes from 'helper/PrivateRoutes';
 
 function App() {
-  const getToken = localStorage.getItem('token');
-
   return (
     <Router>
       <Layout>
@@ -29,18 +31,28 @@ function App() {
             path='/auth/login'
             element={<LoginPages />}
           />
-          {getToken && (
+          <Route element={<PrivateRoutes />}>
             <Route
               path='/dashboard'
               element={<DashboardPages />}
             />
-          )}
-          {getToken && (
             <Route
               path='/profile'
               element={<ProfilePages />}
             />
-          )}
+            <Route
+              path='/shipping-comps'
+              element={<ShippingCompsPages />}
+            />
+            <Route
+              path='/add/shipping-comps'
+              element={<AddShippingCompsPages />}
+            />
+            <Route
+              path='/edit/shipping-comps/:id&name=:name'
+              element={<EditShippingsComps />}
+            />
+          </Route>
         </Routes>
       </Layout>
     </Router>
