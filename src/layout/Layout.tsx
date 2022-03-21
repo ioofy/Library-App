@@ -1,17 +1,36 @@
 import React from 'react';
-import Header from './components/HeaderComponent/Header';
-import Footer from './components/FooterComponent/Footer';
+import SideBar from './components/SideBar/SideBar';
+// import Footer from './components/FooterComponent/Footer';
+import { useLocation } from 'react-router-dom';
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = (props) => {
+// remove this component in homepage
+const withOutLayout = [
+  '/',
+  '/auth/login',
+  '/profile',
+];
+
+const Layout = (props: LayoutProps) => {
+  const { pathname } = useLocation();
+
+  if (withOutLayout.includes(pathname)) {
+    return <>{props.children}</>;
+  }
+
   return (
     <>
-      <Header />
-      <div className='wrapper-all'>{props.children}</div>
-      <Footer />
+      <SideBar
+        children={
+          <div className='wrapper-all'>
+            {props.children}
+          </div>
+        }
+      />
+      {/* <Footer /> */}
     </>
   );
 };
