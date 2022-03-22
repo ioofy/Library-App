@@ -70,7 +70,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "postcss": "^8",
-    "prettier": "^2.5.0",
+    "prettier": "2.6.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "lint-staged": {
