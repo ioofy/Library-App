@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-
 import { defaultState } from 'app/state/authSlice';
 import { useAppSelector } from 'hooks/useGetData';
 import * as BoxIcons from 'react-icons/bi';
