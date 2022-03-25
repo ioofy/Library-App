@@ -1,1 +1,2 @@
-# This app project or repository is for assesment only
+#RTKQuery
+This repository is for learn deep more about redux, RTK, and react query
