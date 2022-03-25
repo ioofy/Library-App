@@ -105,7 +105,6 @@ const AddShippingComps = () => {
           </form>
         </div>
       </div>
-      ;
     </div>
   );
 };
