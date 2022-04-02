@@ -2,9 +2,7 @@
   "extends": [
     "config:base"
   ],
-  "labels": ["automerge"],
-
-
+  "labels": ["automerge"]
 }
 
 
