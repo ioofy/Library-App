@@ -1,39 +1,18 @@
-import {
-  combineReducers,
-  configureStore,
-} from '@reduxjs/toolkit';
-import authReducer from '../state/authSlice';
+import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { authApi } from 'api/authApi';
-import storage from 'redux-persist/lib/storage';
-import thunk from 'redux-thunk';
-import persistReducer from 'redux-persist/es/persistReducer';
-
-const reducers = combineReducers({
-  auth: authReducer,
-});
-
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedReducer = persistReducer(
-  persistConfig,
-  reducers
-);
+import authReducer from '../state/authSlice';
 
 export const store = configureStore({
   reducer: {
-    persistedReducer,
-    [authApi.reducerPath]: authApi.reducer,
+    auth: authReducer,
   },
-  middleware: [thunk],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
-export type RootState = ReturnType<
-  typeof store.getState
->;
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 setupListeners(store.dispatch);

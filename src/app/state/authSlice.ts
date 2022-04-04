@@ -1,56 +1,33 @@
-import {
-  createSlice,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-export interface AuthState {
-  data: {
-    data: {
-      access_token: string | null;
-    };
-    user: {
-      id: number | null;
-      name: string | null;
-      email: string | null;
-      phone_number: number | string | null;
-    };
-  };
-}
-
-const initialState: AuthState = {
-  data: {
-    data: {
-      access_token: null,
-    },
-
-    user: {
-      id: null,
-      name: null,
-      email: null,
-      phone_number: null,
-    },
-  },
+const initialState = {
+  isLoading: false,
+  isAuth: false,
+  isError: false,
 };
 
-export const AuthSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser: (
-      state,
-      action: PayloadAction<AuthState>
-    ) => {
-      state.data.user = action.payload.data.user;
-      state.data.data = action.payload.data.data;
+    authPending: (state) => {
+      state.isLoading = true;
     },
 
-    defaultState: (state) => {
-      state = initialState;
+    authSuccess: (state) => {
+      state.isLoading = false;
+      state.isAuth = true;
+      state.isError = false;
+    },
+    authFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.isError = payload;
     },
   },
 });
 
-export const { setUser, defaultState } =
-  AuthSlice.actions;
+const { reducer, actions } = authSlice;
 
-export default AuthSlice.reducer;
+export const { authPending, authSuccess, authFail } = actions;
+
+export default reducer;
