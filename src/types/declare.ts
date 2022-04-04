@@ -1,22 +1,22 @@
 // this data is same with response api
-export interface ShippingComps {
-  data: {
-    id: number;
-    name: string;
-  }[];
-}
-
-export interface ApiCompsProps {
-  id: string | undefined;
-  name: string | undefined;
+export interface BooksProps {
+  id: number;
+  title: string;
+  createdAt: Date;
+  author: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+  };
 }
 
 export interface FormDataUpdateProps {
-  updateName: string;
+  updateTitle: string;
 }
 
 export interface FormDataCreateProps {
-  createName: string;
+  createTitle: string;
 }
 
 export interface FormLoginProps {
@@ -29,16 +29,8 @@ export interface ResponseMessage {
 }
 
 export interface DataFromResponse {
-  success: boolean;
   data: {
-    data: {
-      access_token: string;
-    };
-    user: {
-      id: number;
-      name: string;
-      email: string;
-      phone_number: number | string;
-    };
+    status: string | number;
+    access_token: string;
   };
 }

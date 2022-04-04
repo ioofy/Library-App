@@ -1,2 +1,1 @@
-export const getToken =
-  localStorage.getItem('token');
+export const getToken = sessionStorage.getItem('jwt');

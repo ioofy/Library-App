@@ -1,31 +1,16 @@
-import { useSigninMutation } from 'api/authApi';
-import { setUser } from 'app/state/authSlice';
-import { useAppDispatch } from 'hooks/useGetData';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import { patterns } from 'utils/pattern';
-import {
-  DataFromResponse,
-  FormLoginProps,
-} from 'types/declare';
+import { DataFromResponse, FormLoginProps } from 'types/declare';
+import { authPending, authSuccess, authFail } from 'app/state/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'app/store/store';
+import { authApi } from 'api/authApi';
 import TopHeader from 'layout/components/TopHeader';
 
 const LoginPages = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const [
-    signin,
-    {
-      data,
-      isLoading,
-      error,
-      isError,
-      isSuccess,
-    },
-  ] = useSigninMutation();
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const {
     register,
@@ -33,54 +18,35 @@ const LoginPages = () => {
     formState: { errors },
   } = useForm<FormLoginProps>();
 
-  const onSubmitForm = (
-    values: FormLoginProps
-  ) => {
-    signin({
-      ...values,
-    });
+  const onSubmitForm = async (values: FormLoginProps) => {
+    dispatch(authPending());
+
+    try {
+      const isAuth: DataFromResponse = await authApi({
+        ...values,
+      });
+
+      // 500 unknown
+      // 401 unauthorized
+      // 200 success
+
+      if (isAuth.data.status === 'error') {
+        return dispatch(authFail(isAuth.data.status));
+      } else {
+        sessionStorage.setItem('jwt', isAuth.data.access_token);
+        dispatch(authSuccess());
+        toast.success('Login success');
+      }
+
+      const awaitNavigate = setTimeout(function () {
+        window.location.href = '/dashboard';
+      }, 800);
+
+      return awaitNavigate;
+    } catch (error) {
+      dispatch(authFail(error));
+    }
   };
-
-  useEffect(() => {
-    const response = data as DataFromResponse;
-
-    if (isError) {
-      toast.error((error as any).data.message);
-    }
-
-    if (isSuccess) {
-      toast.success('Login Success');
-      localStorage.setItem(
-        'token',
-        response.data.data.access_token
-      );
-      dispatch(
-        setUser({
-          data: {
-            data: {
-              access_token:
-                response.data.data.access_token,
-            },
-            user: {
-              id: response.data.user.id,
-              name: response.data.user.name,
-              email: response.data.user.email,
-              phone_number:
-                response.data.user.phone_number,
-            },
-          },
-        })
-      );
-      navigate('/dashboard');
-    }
-  }, [
-    data,
-    dispatch,
-    error,
-    isError,
-    isSuccess,
-    navigate,
-  ]);
 
   return (
     <>
@@ -90,21 +56,14 @@ const LoginPages = () => {
           <h3 className='text-2xl font-bold text-center block -mt-20 mb-20'>
             Login
           </h3>
-          <form
-            onSubmit={handleSubmit(onSubmitForm)}
-          >
+          <form onSubmit={handleSubmit(onSubmitForm)}>
             <div className='mt-4'>
               <div>
-                <label
-                  className='block opacity-60'
-                  htmlFor='email'
-                >
+                <label className='block opacity-60' htmlFor='email'>
                   Email
                 </label>
                 {errors.email && (
-                  <p className='text-red-400'>
-                    *Email dibutuhkan
-                  </p>
+                  <p className='text-red-400'>*Email dibutuhkan</p>
                 )}
                 <input
                   type='text'
@@ -119,20 +78,16 @@ const LoginPages = () => {
                 />
               </div>
               <div className='mt-4'>
-                <label className='block opacity-60'>
-                  Password
-                </label>
+                <label className='block opacity-60'>Password</label>
                 {errors.password && (
-                  <p className='text-red-400'>
-                    *Password dibutuhkan
-                  </p>
+                  <p className='text-red-400'>*Password dibutuhkan</p>
                 )}
                 <input
                   type='password'
                   placeholder='7+ strong password'
                   {...register('password', {
                     required: true,
-                    minLength: 7,
+                    minLength: 5,
                   })}
                   className='px-12 py-2 mt-2 border rounded-md 
                 focus:outline-none focus:ring-1 focus:ring-blue-600'
@@ -143,9 +98,7 @@ const LoginPages = () => {
                   className='px-6 py-2 mt-8 text-white bg-blue-600 
                 rounded-full hover:bg-blue-900 w-full'
                 >
-                  {isLoading
-                    ? 'Loading...'
-                    : 'Login'}
+                  {isLoading ? 'Loading...' : 'Login'}
                 </button>
               </div>
             </div>

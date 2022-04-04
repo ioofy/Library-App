@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import ListShippingComps from 'components/ListComps/ListShippingComps';
+import ListShippingComps from 'components/ListBooks/ListBooks';
 
-const ShippingCompsPages = () => {
-  const [searchFilter, setSearchFilter] =
-    useState('');
+const ListBooksPages = () => {
+  const [searchFilter, setSearchFilter] = useState('');
 
   return (
     <>
       <div className='flex w-full items-center justify-between'>
         <div className='flex'>
-          <h1 className='text-2xl font-semibold'>
-            Shipping Comps
-          </h1>
+          <h1 className='text-2xl font-semibold'>📚List Books</h1>
 
           <button
             className='bg-blue-500 hover:bg-blue-700 text-white 
           font-bold rounded-full w-8 ml-4 flex items-center justify-center'
           >
-            <Link to='/add/shipping-comps'>
+            <Link to='/add/books'>
               <BsPlus size={19} />
             </Link>
           </button>
@@ -33,9 +30,7 @@ const ShippingCompsPages = () => {
               type='search'
               name='search'
               placeholder='🔍  Cari'
-              onChange={(
-                e: React.ChangeEvent<HTMLInputElement>
-              ) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setSearchFilter(e.target.value)
               }
             />
@@ -44,12 +39,10 @@ const ShippingCompsPages = () => {
       </div>
 
       <div className='mt-20'>
-        <ListShippingComps
-          filteredName={searchFilter}
-        />
+        <ListShippingComps filteredName={searchFilter} />
       </div>
     </>
   );
 };
 
-export default ShippingCompsPages;
+export default ListBooksPages;

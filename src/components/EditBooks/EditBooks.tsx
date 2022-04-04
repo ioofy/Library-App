@@ -4,9 +4,9 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { FormDataUpdateProps } from 'types/declare';
-import shippingCompsService from 'api/shippingCompsApi';
+import bookService from 'api/shippingCompsApi';
 
-type EditShippingCompsProps = {
+type EditBooksProps = {
   id: string | undefined;
   name: string | undefined;
 };
@@ -15,9 +15,7 @@ type ResponseDataUpdated = {
   message: string;
 };
 
-const EditShippingComps = ({
-  id,
-}: EditShippingCompsProps) => {
+const EditBooks = ({ id }: EditBooksProps) => {
   const navigate = useNavigate();
   const {
     register,
@@ -25,8 +23,7 @@ const EditShippingComps = ({
     formState: { errors },
   } = useForm<FormDataUpdateProps>();
 
-  const [updatedName, setUpdatedName] =
-    useState<string>('');
+  const [updatedName, setUpdatedName] = useState<string>('');
 
   const {
     mutate: MutateUpdate,
@@ -34,10 +31,7 @@ const EditShippingComps = ({
     isError,
     data,
   } = useMutation<any, Error>(async () => {
-    return await shippingCompsService.editShippingCompsData(
-      id as any,
-      { name: updatedName } as any
-    );
+    return await bookService.editBooksData(id as any, updatedName);
   });
 
   useEffect(() => {
@@ -51,14 +45,13 @@ const EditShippingComps = ({
   }, [MutateUpdate, updatedName]);
 
   useEffect(() => {
-    const responseDataUpdate =
-      data as ResponseDataUpdated;
+    // const responseDataUpdate = data as ResponseDataUpdated;
 
-    if (responseDataUpdate) {
-      toast.success(responseDataUpdate.message);
+    if (data) {
+      toast.success('Successfully updated a book');
 
       setTimeout(function () {
-        navigate('/shipping-comps');
+        navigate('/books');
       }, 1000);
     }
 
@@ -67,35 +60,31 @@ const EditShippingComps = ({
     }
   }, [data, isError, navigate]);
 
-  const onSubmitForm = (
-    values: FormDataUpdateProps
-  ) => {
-    const { updateName } = values;
+  const onSubmitForm = (values: FormDataUpdateProps) => {
+    const { updateTitle } = values;
 
-    setUpdatedName(updateName);
+    setUpdatedName(updateTitle);
   };
 
   return (
     <div>
       <div>
         <div className='pt-2 mx-auto text-gray-600'>
-          <p>Nama</p>
-          <form
-            onSubmit={handleSubmit(onSubmitForm)}
-          >
+          <p>Edit a new title</p>
+          <form onSubmit={handleSubmit(onSubmitForm)}>
             <input
               className='border-2 border-gray-300 bg-white mt-4 
               h-10 px-5 rounded-lg text-sm focus:outline-none'
               type='text'
-              placeholder='Edit Shipping Comps'
-              {...register('updateName', {
+              placeholder='New title Books'
+              {...register('updateTitle', {
                 required: true,
                 pattern: /[A-Za-z]{3}/,
               })}
             />
-            {errors.updateName && (
+            {errors.updateTitle && (
               <p className='text-red-400 text-sm mt-2'>
-                *Nama harus diisi
+                *Name must be fullfiled
               </p>
             )}
             <div className='mt-6'>
@@ -103,9 +92,7 @@ const EditShippingComps = ({
                 className='bg-blue-500 hover:bg-blue-700 
               text-white font-bold py-2 px-4 rounded'
               >
-                {LoadingUpdate
-                  ? 'Loading...'
-                  : 'Simpan'}
+                {LoadingUpdate ? 'Loading...' : 'Save now'}
               </button>
             </div>
           </form>
@@ -115,4 +102,4 @@ const EditShippingComps = ({
   );
 };
 
-export default EditShippingComps;
+export default EditBooks;

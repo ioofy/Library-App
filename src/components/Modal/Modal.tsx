@@ -1,8 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useRef,
-} from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 import { BiX } from 'react-icons/bi';
 
 type ModalProps = {
@@ -11,11 +7,7 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-const Modal = ({
-  children,
-  setShowModal,
-  isShowing,
-}: ModalProps) => {
+const Modal = ({ children, setShowModal, isShowing }: ModalProps) => {
   const modalRef = useRef(null);
 
   return (
@@ -31,16 +23,13 @@ const Modal = ({
           <div
             className='w-80 h-80 bg-white rounded-lg'
             style={{
-              boxShadow:
-                '0 5px 15px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
             }}
           >
             <div className='block'>
               <BiX
                 size={32}
-                onClick={() =>
-                  setShowModal((prev) => !prev)
-                }
+                onClick={() => setShowModal((prev) => !prev)}
                 className='cursor-pointer mt-2 ml-2 text-black'
               />
             </div>

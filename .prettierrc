@@ -1,7 +1,7 @@
 {
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "printWidth": 50,
+  "printWidth": 80,
   "tabWidth": 2,
   "trailingComma": "es5",
   "endOfLine": "crlf"

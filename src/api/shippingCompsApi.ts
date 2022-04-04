@@ -43,7 +43,7 @@ const deleteBooksData = async (id: number) => {
   return response.data;
 };
 
-const shippingCompsService = {
+const bookService = {
   getBooksData,
   getBooksById,
   editBooksData,
@@ -51,4 +51,4 @@ const shippingCompsService = {
   deleteBooksData,
 };
 
-export default shippingCompsService;
+export default bookService;
