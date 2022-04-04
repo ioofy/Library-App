@@ -1,28 +1,17 @@
-import {
-  createApi,
-  fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env
-      .REACT_APP_API_URL as string,
-  }),
-  endpoints: (builder) => ({
-    signin: builder.mutation({
-      query: (body: {
-        email: string;
-        password: string;
-      }) => {
-        return {
-          url: '/authentication/login',
-          method: 'POST',
-          body,
-        };
-      },
-    }),
-  }),
-});
+const apiClient = `${process.env.REACT_APP_API_URL}/auth/signin`;
 
-export const { useSigninMutation } = authApi;
+export const authApi = (data: Object): any => {
+  return new Promise((resolve, reject) => {
+    try {
+      const response = axios.post(apiClient, {
+        ...data,
+      });
+
+      resolve(response.then((res) => res));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

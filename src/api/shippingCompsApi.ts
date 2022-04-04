@@ -1,66 +1,54 @@
 import axios from 'axios';
-import authHeader from 'helper/authHeader';
-import { ApiCompsProps } from 'types/declare';
+import authHeader from 'helper/getAuthHeader';
 
 const apiClient = axios.create({
-  baseURL: process.env
-    .REACT_APP_API_URL as string,
+  baseURL: process.env.REACT_APP_API_URL as string,
   headers: {
     'Content-Type': 'application/json',
     ...authHeader(),
   },
 });
 
-const getShippingCompsData = async () => {
-  const response = await apiClient.get(
-    '/finance/shippingComps'
-  );
+const getBooksData = async (take: number) => {
+  const response = await apiClient.get(`book?take=${take}&skip=0`);
 
   return response.data;
 };
 
-const editShippingCompsData = async (
-  id: ApiCompsProps,
-  { name }: ApiCompsProps
-) => {
-  const response = await apiClient.put(
-    `/finance/shippingComps/${id}`,
-    {
-      name,
-    }
-  );
+const editBooksData = async (id: number, title: string) => {
+  const response = await apiClient.put(`/book/${id}`, {
+    title,
+  });
 
   return response.data;
 };
 
-const addShippingCompsData = async ({
-  name,
-}: ApiCompsProps) => {
-  const response = await apiClient.post(
-    '/finance/shippingComps',
-    {
-      name,
-    }
-  );
+const getBooksById = async (id: number) => {
+  const response = await apiClient.get(`book/${id}`);
 
   return response.data;
 };
 
-const deleteShippingCompsData = async (
-  id: ApiCompsProps
-) => {
-  const response = await apiClient.delete(
-    `/finance/shippingComps/${id}`
-  );
+const addBooksData = async (title: string) => {
+  const response = await apiClient.post('/book', {
+    title,
+  });
+
+  return response.data;
+};
+
+const deleteBooksData = async (id: number) => {
+  const response = await apiClient.delete(`/book/${id}`);
 
   return response.data;
 };
 
 const shippingCompsService = {
-  getShippingCompsData,
-  editShippingCompsData,
-  addShippingCompsData,
-  deleteShippingCompsData,
+  getBooksData,
+  getBooksById,
+  editBooksData,
+  addBooksData,
+  deleteBooksData,
 };
 
 export default shippingCompsService;
