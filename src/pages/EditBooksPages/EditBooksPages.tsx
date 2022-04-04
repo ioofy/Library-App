@@ -7,6 +7,7 @@ import { BooksProps, ResponseMessage } from 'types/declare';
 import bookService from 'api/shippingCompsApi';
 import Modal from 'components/Modal/Modal';
 import toast from 'react-hot-toast';
+import HelmetEntity from 'components/Helmet/Helmet';
 
 type QueryPageParams = {
   id: string;
@@ -76,6 +77,7 @@ const EditBooksPages = () => {
 
   return (
     <div>
+      <HelmetEntity title='Edit Books' description='Edit a book' />
       {error && (
         <h2 className='text-center text-[30px] mt-20'>
           😳Sorry something went wrong

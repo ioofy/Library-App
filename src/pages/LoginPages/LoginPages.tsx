@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store/store';
 import { authApi } from 'api/authApi';
 import TopHeader from 'layout/components/TopHeader';
+import HelmetEntity from 'components/Helmet/Helmet';
 
 const LoginPages = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,10 @@ const LoginPages = () => {
 
   return (
     <>
+      <HelmetEntity
+        title='Welcome | Login first'
+        description='Login to access a feature'
+      />
       <TopHeader />
       <div className='flex items-center justify-center min-h-screen'>
         <div className='px-10 py-8 mt-4 text-left bg-gray-100 shadow-lg rounded-lg'>

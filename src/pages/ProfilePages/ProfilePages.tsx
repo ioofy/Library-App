@@ -1,8 +1,14 @@
+import HelmetEntity from 'components/Helmet/Helmet';
 import TopHeader from 'layout/components/TopHeader';
 
 const ProfilePages = () => {
   return (
     <>
+      <HelmetEntity
+        title='Your profile'
+        description='This is your profile page'
+      />
+
       <TopHeader />
       <h1 className='text-center text-4xl font-bold text-gray-500 mt-20'>
         Profile

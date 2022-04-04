@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ListShippingComps from 'components/ListBooks/ListBooks';
+import HelmetEntity from 'components/Helmet/Helmet';
 
 const ListBooksPages = () => {
   const [searchFilter, setSearchFilter] = useState('');
 
   return (
     <>
+      <HelmetEntity title='📚List of books' description='List of books' />
       <div className='flex w-full items-center justify-between'>
         <div className='flex'>
           <h1 className='text-2xl font-semibold'>📚List Books</h1>
