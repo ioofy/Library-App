@@ -1,17 +1,16 @@
+import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import { store } from 'app/store/store';
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query';
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import { PersistGate } from 'redux-persist/integration/react';
+// import { persistStore } from 'redux-persist';
+import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './router/App';
 // tailwind styles
 import './styles/index.css';
+
+type RootElement = Element | DocumentFragment;
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,21 +22,23 @@ const queryClient = new QueryClient({
 });
 
 // persistore
-let persistor = persistStore(store);
+// let persistor = persistStore(store);
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+const renderRoot = createRoot(rootElement as RootElement);
+
+renderRoot.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate
+      {/* <PersistGate
         loading={null}
         persistor={persistor}
-      >
-        <QueryClientProvider client={queryClient}>
-          <App />
-          <Toaster />
-        </QueryClientProvider>
-      </PersistGate>
+      > */}
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <Toaster />
+      </QueryClientProvider>
+      {/* </PersistGate> */}
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
