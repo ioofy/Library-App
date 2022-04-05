@@ -33,6 +33,7 @@ const LoginPages = () => {
       // 200 success
 
       if (isAuth.data.status === 'error') {
+        toast.error('Invalid Credentials');
         return dispatch(authFail(isAuth.data.status));
       } else {
         sessionStorage.setItem('jwt', isAuth.data.access_token);
@@ -47,12 +48,13 @@ const LoginPages = () => {
         toast.success('Login success');
       }
 
-      // const awaitNavigate = setTimeout(function () {
-      //   window.location.href = '/dashboard';
-      // }, 800);
+      const awaitNavigate = setTimeout(function () {
+        window.location.href = '/dashboard';
+      }, 800);
 
-      // return awaitNavigate;
+      return awaitNavigate;
     } catch (error) {
+      toast.error('Invalid Credentials');
       dispatch(authFail(error));
     }
   };

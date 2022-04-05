@@ -18,9 +18,11 @@ export type BookResponse = {
 }[];
 
 export interface UserProps {
+  id: number;
   email: string;
   firstName: string;
   lastName: string;
+  role: string;
 }
 
 export interface FormDataUpdateProps {
