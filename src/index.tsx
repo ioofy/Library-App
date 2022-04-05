@@ -2,8 +2,8 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import { store } from 'app/store/store';
-// import { PersistGate } from 'redux-persist/integration/react';
-// import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './router/App';
@@ -22,23 +22,20 @@ const queryClient = new QueryClient({
 });
 
 // persistore
-// let persistor = persistStore(store);
+let persistor = persistStore(store);
 
 const rootElement = document.getElementById('root');
 const renderRoot = createRoot(rootElement as RootElement);
 
 renderRoot.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={store}>
-      {/* <PersistGate
-        loading={null}
-        persistor={persistor}
-      > */}
-      <QueryClientProvider client={queryClient}>
-        <App />
-        <Toaster />
-      </QueryClientProvider>
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <Toaster />
+        </QueryClientProvider>
+      </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </React.Fragment>
 );

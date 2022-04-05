@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import ListShippingComps from 'components/ListBooks/ListBooks';
+import ListBooks from 'components/ListBooks/ListBooks';
 import HelmetEntity from 'components/Helmet/Helmet';
 
 const ListBooksPages = () => {
@@ -41,7 +41,7 @@ const ListBooksPages = () => {
       </div>
 
       <div className='mt-20'>
-        <ListShippingComps filteredName={searchFilter} />
+        <ListBooks filteredName={searchFilter} />
       </div>
     </>
   );

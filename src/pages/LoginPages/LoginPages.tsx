@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { patterns } from 'utils/pattern';
 import { DataFromResponse, FormLoginProps } from 'types/declare';
 import { authPending, authSuccess, authFail } from 'app/state/authSlice';
+import { getMyProfile } from 'app/actions/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store/store';
 import { authApi } from 'api/authApi';
@@ -35,15 +36,22 @@ const LoginPages = () => {
         return dispatch(authFail(isAuth.data.status));
       } else {
         sessionStorage.setItem('jwt', isAuth.data.access_token);
+
+        // dispatch auth that sucessed
         dispatch(authSuccess());
+
+        // dispatch all actions in get my profile
+        dispatch(getMyProfile());
+
+        // give that toast
         toast.success('Login success');
       }
 
-      const awaitNavigate = setTimeout(function () {
-        window.location.href = '/dashboard';
-      }, 800);
+      // const awaitNavigate = setTimeout(function () {
+      //   window.location.href = '/dashboard';
+      // }, 800);
 
-      return awaitNavigate;
+      // return awaitNavigate;
     } catch (error) {
       dispatch(authFail(error));
     }

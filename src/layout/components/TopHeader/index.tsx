@@ -14,7 +14,7 @@ const TopHeader = () => {
       </div>
       <div className='mr-10'>
         {getToken && (
-          <Link to='/profile'>
+          <Link to='/my/profile'>
             <div className='max-w-full flex items-center'>
               <div className='avatar w-10'>
                 <img

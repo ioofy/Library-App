@@ -1,16 +1,7 @@
-import axios from 'axios';
-import authHeader from 'helper/getAuthHeader';
-
-const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL as string,
-  headers: {
-    'Content-Type': 'application/json',
-    ...authHeader(),
-  },
-});
+import apiClient from 'helper/apiClient';
 
 const getBooksData = async (take: number) => {
-  const response = await apiClient.get(`book?take=${take}&skip=0`);
+  const response = await apiClient.get(`/book?take=${take}&skip=0`);
 
   return response.data;
 };
@@ -24,7 +15,7 @@ const editBooksData = async (id: number, title: string) => {
 };
 
 const getBooksById = async (id: number) => {
-  const response = await apiClient.get(`book/${id}`);
+  const response = await apiClient.get(`/book/${id}`);
 
   return response.data;
 };

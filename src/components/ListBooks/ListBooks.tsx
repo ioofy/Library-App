@@ -1,8 +1,7 @@
-import { BooksProps } from 'types/declare';
+import { BookResponse } from 'types/declare';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import bookService from 'api/shippingCompsApi';
-import { useEffect, useState } from 'react';
+import bookService from 'api/booksApi';
 import { getDate } from 'utils/getDate';
 
 type ListBooksProps = {
@@ -10,21 +9,15 @@ type ListBooksProps = {
 };
 
 const ListBooks = (props: ListBooksProps) => {
-  const [bookData, setBookData] = useState([]);
-
   // result data is not data.data
-  const { data, isLoading, error } = useQuery(
-    ['shippingComps'],
+  const { data, isLoading, error } = useQuery<any, Error>(
+    ['listBooks'],
     async () => await bookService.getBooksData(10)
   );
 
-  useEffect(() => {
-    if (data) {
-      setBookData(data);
-    }
-  }, [data]);
-
   if (isLoading) return <p>Fetching Data...</p>;
+
+  const result: BookResponse = data;
 
   return (
     <>
@@ -37,9 +30,9 @@ const ListBooks = (props: ListBooksProps) => {
             😳Sorry something went wrong
           </h2>
         )}
-        {bookData
+        {result
           /* eslint-disable array-callback-return */
-          .filter((val: BooksProps) => {
+          .filter((val) => {
             if (props.filteredName === '') {
               return val;
             } else if (
@@ -48,17 +41,17 @@ const ListBooks = (props: ListBooksProps) => {
               return val;
             }
           })
-          .map((book: BooksProps) => {
+          .map((book) => {
             return (
-              <Link key={book.id} to={`/edit/book/${book.id}`}>
-                <li className='p-4 cursor-pointer'>
+              <li className='p-4 cursor-pointer' key={book.id}>
+                <Link key={book.id} to={`/edit/book/${book.id}`}>
                   <p className='font-semibold opacity-80'>{book.title}</p>
-                  <p className='font-bold text-[13px]'>
-                    On {getDate(book.createdAt)}
-                  </p>
-                  <hr className='mt-6' />
-                </li>
-              </Link>
+                </Link>
+                <p className='font-bold text-[13px]'>
+                  On {getDate(book.createdAt)}
+                </p>
+                <hr className='mt-6' />
+              </li>
             );
           })}
       </ul>

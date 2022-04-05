@@ -17,11 +17,10 @@ const SideBar: React.FC<ContentProps> = (props) => {
     // remove auth token
     sessionStorage.removeItem('jwt');
     // remove persist redux root into null
-    // localStorage.removeItem('persist:root');
+    localStorage.removeItem('persist:root');
     // with refresh
     window.location.href = '/auth/login';
     // dispatch to default state from redux
-    // dispatch(defaultState());
     dispatch({ type: 'DEFAULT_STATE' });
   };
 

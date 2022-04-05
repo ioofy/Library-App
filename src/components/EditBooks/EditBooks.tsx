@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { FormDataUpdateProps } from 'types/declare';
-import bookService from 'api/shippingCompsApi';
+import bookService from 'api/booksApi';
 
 type EditBooksProps = {
   id: string | undefined;
@@ -79,7 +79,6 @@ const EditBooks = ({ id }: EditBooksProps) => {
               placeholder='New title Books'
               {...register('updateTitle', {
                 required: true,
-                pattern: /[A-Za-z]{3}/,
               })}
             />
             {errors.updateTitle && (

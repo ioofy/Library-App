@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { FormDataCreateProps, ResponseMessage } from 'types/declare';
 import toast from 'react-hot-toast';
-import bookService from 'api/shippingCompsApi';
+import bookService from 'api/booksApi';
 
 const AddBooks = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AddBooks = () => {
     isLoading: LoadingCreate,
     data,
     isError,
-  } = useMutation(async () => {
+  } = useMutation<any, Error>(async () => {
     return await bookService.addBooksData(title);
   });
 
@@ -69,7 +69,6 @@ const AddBooks = () => {
               placeholder='Add New Books'
               {...register('createTitle', {
                 required: true,
-                pattern: /[A-Za-z]{3}/,
               })}
             />
             {errors.createTitle && (

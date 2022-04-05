@@ -1,4 +1,4 @@
-import AddShippingComps from 'components/AddBooks/AddBooks';
+import AddBooks from 'components/AddBooks/AddBooks';
 import HelmetEntity from 'components/Helmet/Helmet';
 
 const AddBooksPages = () => {
@@ -7,7 +7,7 @@ const AddBooksPages = () => {
       <HelmetEntity title='Add Books' description='Add a new book' />
       <h1 className='text-2xl font-semibold'>📘 Add New Books</h1>
       <div className='mt-14'>
-        <AddShippingComps />
+        <AddBooks />
       </div>
     </div>
   );

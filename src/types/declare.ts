@@ -11,6 +11,18 @@ export interface BooksProps {
   };
 }
 
+export type BookResponse = {
+  id: number;
+  title: string;
+  createdAt: Date;
+}[];
+
+export interface UserProps {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface FormDataUpdateProps {
   updateTitle: string;
 }

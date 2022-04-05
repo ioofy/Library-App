@@ -8,7 +8,7 @@ type LayoutProps = {
 };
 
 // remove this component in homepage
-const withOutLayout = ['/', '/auth/login', '/profile'];
+const withOutLayout = ['/', '/auth/login', '/my/profile'];
 
 const Layout = (props: LayoutProps) => {
   const { pathname } = useLocation();

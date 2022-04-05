@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import EditShippingComps from 'components/EditBooks/EditBooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
 import { useMutation, useQuery } from 'react-query';
 import { BooksProps, ResponseMessage } from 'types/declare';
-import bookService from 'api/shippingCompsApi';
+import bookService from 'api/booksApi';
 import Modal from 'components/Modal/Modal';
 import toast from 'react-hot-toast';
 import HelmetEntity from 'components/Helmet/Helmet';
+import EditBooks from 'components/EditBooks/EditBooks';
 
 type QueryPageParams = {
   id: string;
@@ -115,7 +115,7 @@ const EditBooksPages = () => {
           </div>
 
           <div className='mt-14'>
-            <EditShippingComps id={id} name={name} />
+            <EditBooks id={id} name={name} />
           </div>
 
           <Modal isShowing={showModal} setShowModal={setShowModal}>
