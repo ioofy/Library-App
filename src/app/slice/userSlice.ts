@@ -1,6 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface UserState {
+  user: object;
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const initialState: UserState = {
   user: {},
   isLoading: false,
   isError: false,
@@ -14,15 +20,15 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
 
-    getUserSuccess: (state, { payload }: { payload: object }) => {
+    getUserSuccess: (state, action: PayloadAction<{}>) => {
       state.isLoading = false;
-      state.user = payload;
+      state.user = action.payload;
       state.isError = false;
     },
 
-    getUserFail: (state, { payload }) => {
+    getUserFail: (state, action: PayloadAction<any>) => {
       state.isLoading = false;
-      state.isError = payload;
+      state.isError = action.payload;
     },
   },
 });

@@ -1,6 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface AuthState {
+  isLoading: boolean;
+  isAuth: boolean;
+  isError: boolean;
+}
+
+const initialState: AuthState = {
   isLoading: false,
   isAuth: false,
   isError: false,
@@ -19,9 +25,9 @@ const authSlice = createSlice({
       state.isAuth = true;
       state.isError = false;
     },
-    authFail: (state, { payload }) => {
+    authFail: (state, action: PayloadAction<any>) => {
       state.isLoading = false;
-      state.isError = payload;
+      state.isError = action.payload;
     },
   },
 });
