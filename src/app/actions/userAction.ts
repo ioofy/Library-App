@@ -2,7 +2,7 @@ import {
   getUserFail,
   getUserPending,
   getUserSuccess,
-} from 'app/state/userSlice';
+} from 'app/slice/userSlice';
 
 import { getUser } from 'api/userApi';
 import { UserProps } from 'types/declare';
@@ -23,3 +23,4 @@ export const getMyProfile = () => async (dispatch: any) => {
     dispatch(getUserFail(error));
   }
 };
+

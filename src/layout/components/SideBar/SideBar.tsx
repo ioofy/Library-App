@@ -1,10 +1,14 @@
 import { useDispatch } from 'react-redux';
-// import { defaultState } from 'app/state/authSlice';
-import * as BoxIcons from 'react-icons/bi';
-import Content from 'components/ContentInside/ContentInside';
-import TopHeader from '../TopHeader';
 import { getToken } from 'utils/getToken';
 import { Link } from 'react-router-dom';
+// import { defaultState } from 'app/state/authSlice';
+import loadable from '@loadable/component';
+import * as BoxIcons from 'react-icons/bi';
+
+const Content = loadable(
+  () => import('components/ContentInside/ContentInside')
+);
+const TopHeader = loadable(() => import('../TopHeader'));
 
 type ContentProps = {
   children: React.ReactNode;
@@ -90,3 +94,4 @@ const SideBar: React.FC<ContentProps> = (props) => {
 };
 
 export default SideBar;
+

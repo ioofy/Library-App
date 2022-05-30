@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { FormDataCreateProps, ResponseMessage } from 'types/declare';
+import { FormDataCreateProps } from 'types/declare';
 import toast from 'react-hot-toast';
 import bookService from 'api/booksApi';
 
@@ -31,7 +31,7 @@ const AddBooks = () => {
     if (data) {
       toast.success('Successfully created new book');
 
-      setTimeout(function () {
+      setTimeout(() => {
         navigate('/books');
       }, 1000);
     }
@@ -92,3 +92,4 @@ const AddBooks = () => {
 };
 
 export default AddBooks;
+

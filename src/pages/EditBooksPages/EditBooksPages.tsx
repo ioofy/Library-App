@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
 import { useMutation, useQuery } from 'react-query';
-import { BooksProps, ResponseMessage } from 'types/declare';
+import { BooksProps } from 'types/declare';
 import bookService from 'api/booksApi';
-import Modal from 'components/Modal/Modal';
 import toast from 'react-hot-toast';
-import HelmetEntity from 'components/Helmet/Helmet';
-import EditBooks from 'components/EditBooks/EditBooks';
+import loadable from '@loadable/component';
+
+const Modal = loadable(() => import('components/Modal/Modal'));
+const EditBooks = loadable(() => import('components/EditBooks/EditBooks'));
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
 
 type QueryPageParams = {
   id: string;
@@ -145,3 +147,4 @@ const EditBooksPages = () => {
 };
 
 export default EditBooksPages;
+

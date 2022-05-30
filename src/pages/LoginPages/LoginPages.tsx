@@ -2,13 +2,15 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { patterns } from 'utils/pattern';
 import { DataFromResponse, FormLoginProps } from 'types/declare';
-import { authPending, authSuccess, authFail } from 'app/state/authSlice';
+import { authPending, authSuccess, authFail } from 'app/slice/authSlice';
 import { getMyProfile } from 'app/actions/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store/store';
 import { authApi } from 'api/authApi';
-import TopHeader from 'layout/components/TopHeader';
-import HelmetEntity from 'components/Helmet/Helmet';
+import loadable from '@loadable/component';
+
+const TopHeader = loadable(() => import('layout/components/TopHeader'));
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
 
 const LoginPages = () => {
   const dispatch = useDispatch();
@@ -125,3 +127,4 @@ const LoginPages = () => {
 };
 
 export default LoginPages;
+

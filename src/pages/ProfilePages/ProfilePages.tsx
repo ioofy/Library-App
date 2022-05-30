@@ -1,8 +1,10 @@
-import userService from 'api/userApi';
-import HelmetEntity from 'components/Helmet/Helmet';
-import TopHeader from 'layout/components/TopHeader';
 import { useQuery } from 'react-query';
 import { UserProps } from 'types/declare';
+import userService from 'api/userApi';
+import loadable from '@loadable/component';
+
+const TopHeader = loadable(() => import('layout/components/TopHeader'));
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
 
 const ProfilePages = () => {
   const { data, isLoading, error } = useQuery<any, Error>(
@@ -81,3 +83,4 @@ const ProfilePages = () => {
 };
 
 export default ProfilePages;
+

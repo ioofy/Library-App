@@ -14,7 +14,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
 
-    getUserSuccess: (state, { payload }) => {
+    getUserSuccess: (state, { payload }: { payload: object }) => {
       state.isLoading = false;
       state.user = payload;
       state.isError = false;
@@ -32,3 +32,4 @@ const { reducer, actions } = userSlice;
 export const { getUserPending, getUserFail, getUserSuccess } = actions;
 
 export default reducer;
+

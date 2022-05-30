@@ -1,5 +1,7 @@
-import AddBooks from 'components/AddBooks/AddBooks';
-import HelmetEntity from 'components/Helmet/Helmet';
+import loadable from '@loadable/component';
+
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
+const AddBooks = loadable(() => import('components/AddBooks/AddBooks'));
 
 const AddBooksPages = () => {
   return (
@@ -14,3 +16,4 @@ const AddBooksPages = () => {
 };
 
 export default AddBooksPages;
+

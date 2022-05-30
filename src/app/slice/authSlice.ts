@@ -31,3 +31,4 @@ const { reducer, actions } = authSlice;
 export const { authPending, authSuccess, authFail } = actions;
 
 export default reducer;
+

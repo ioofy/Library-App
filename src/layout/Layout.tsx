@@ -1,7 +1,9 @@
 import React from 'react';
-import SideBar from './components/SideBar/SideBar';
-// import Footer from './components/FooterComponent/Footer';
+import loadable from '@loadable/component';
 import { useLocation } from 'react-router-dom';
+
+// const Footer = loadable(() => import('layout/components/Footer/Footer'));
+const SideBar = loadable(() => import('layout/components/SideBar/SideBar'));
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -26,3 +28,4 @@ const Layout = (props: LayoutProps) => {
 };
 
 export default Layout;
+

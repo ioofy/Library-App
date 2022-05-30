@@ -11,9 +11,9 @@ type EditBooksProps = {
   name: string | undefined;
 };
 
-type ResponseDataUpdated = {
-  message: string;
-};
+// type ResponseDataUpdated = {
+//   message: string;
+// };
 
 const EditBooks = ({ id }: EditBooksProps) => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const EditBooks = ({ id }: EditBooksProps) => {
     if (data) {
       toast.success('Successfully updated a book');
 
-      setTimeout(function () {
+      setTimeout(() => {
         navigate('/books');
       }, 1000);
     }
@@ -102,3 +102,4 @@ const EditBooks = ({ id }: EditBooksProps) => {
 };
 
 export default EditBooks;
+

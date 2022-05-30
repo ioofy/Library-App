@@ -1,5 +1,7 @@
-import HelmetEntity from 'components/Helmet/Helmet';
-import TopHeader from 'layout/components/TopHeader';
+import loadable from '@loadable/component';
+
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
+const TopHeader = loadable(() => import('layout/components/TopHeader'));
 
 const HomePages = () => {
   return (
@@ -14,3 +16,4 @@ const HomePages = () => {
 };
 
 export default HomePages;
+

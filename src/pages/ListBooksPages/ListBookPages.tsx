@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import ListBooks from 'components/ListBooks/ListBooks';
-import HelmetEntity from 'components/Helmet/Helmet';
+import loadable from '@loadable/component';
+
+const ListBooks = loadable(() => import('components/ListBooks/ListBooks'));
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
 
 const ListBooksPages = () => {
   const [searchFilter, setSearchFilter] = useState('');
@@ -48,3 +50,4 @@ const ListBooksPages = () => {
 };
 
 export default ListBooksPages;
+

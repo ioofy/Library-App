@@ -1,4 +1,6 @@
-import HelmetEntity from 'components/Helmet/Helmet';
+import loadable from '@loadable/component';
+
+const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
 
 const DashboardPages = () => {
   return (
@@ -24,3 +26,4 @@ const DashboardPages = () => {
 };
 
 export default DashboardPages;
+
