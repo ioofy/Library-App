@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   user: object;
@@ -13,7 +13,7 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     getUserPending: (state) => {
@@ -38,4 +38,3 @@ const { reducer, actions } = userSlice;
 export const { getUserPending, getUserFail, getUserSuccess } = actions;
 
 export default reducer;
-

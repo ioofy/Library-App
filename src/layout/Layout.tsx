@@ -1,16 +1,16 @@
-import React from 'react';
-import loadable from '@loadable/component';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import loadable from "@loadable/component";
+import { useLocation } from "react-router-dom";
 
 // const Footer = loadable(() => import('layout/components/Footer/Footer'));
-const SideBar = loadable(() => import('layout/components/SideBar/SideBar'));
+const SideBar = loadable(() => import("layout/components/SideBar/SideBar"));
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 // remove this component in homepage
-const withOutLayout = ['/', '/auth/login', '/my/profile'];
+const withOutLayout = ["/", "/auth/login", "/my/profile"];
 
 const Layout = (props: LayoutProps) => {
   const { pathname } = useLocation();
@@ -21,11 +21,10 @@ const Layout = (props: LayoutProps) => {
 
   return (
     <>
-      <SideBar children={<div className='wrapper-all'>{props.children}</div>} />
+      <SideBar children={<div className="wrapper-all">{props.children}</div>} />
       {/* <Footer /> */}
     </>
   );
 };
 
 export default Layout;
-

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isLoading: boolean;
@@ -13,7 +13,7 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     authPending: (state) => {
@@ -37,4 +37,3 @@ const { reducer, actions } = authSlice;
 export const { authPending, authSuccess, authFail } = actions;
 
 export default reducer;
-

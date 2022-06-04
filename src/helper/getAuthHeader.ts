@@ -1,4 +1,4 @@
-import { getToken } from 'utils/getToken';
+import { getToken } from "utils/getToken";
 
 const authHeader = () => {
   if (getToken) {
@@ -9,7 +9,7 @@ const authHeader = () => {
     };
   } else {
     return {
-      Authorization: '',
+      Authorization: "",
     };
   }
 };

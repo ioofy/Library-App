@@ -1,4 +1,4 @@
-import apiClient from 'helper/apiClient';
+import apiClient from "helper/apiClient";
 
 const getBooksData = async (take: number) => {
   const response = await apiClient.get(`/book?take=${take}&skip=0`);
@@ -21,7 +21,7 @@ const getBooksById = async (id: number) => {
 };
 
 const addBooksData = async (title: string) => {
-  const response = await apiClient.post('/book', {
+  const response = await apiClient.post("/book", {
     title,
   });
 

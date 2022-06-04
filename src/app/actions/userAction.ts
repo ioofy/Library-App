@@ -1,6 +1,6 @@
-import { getUserFail, getUserSuccess } from 'app/slice/userSlice';
-import { getUser } from 'api/userApi';
-import { UserProps } from 'types/declare';
+import { getUserFail, getUserSuccess } from "app/slice/userSlice";
+import { getUser } from "api/userApi";
+import { UserProps } from "types/models";
 
 export const getMyProfile = () => async (dispatch: any) => {
   try {
@@ -16,4 +16,3 @@ export const getMyProfile = () => async (dispatch: any) => {
     dispatch(getUserFail(error));
   }
 };
-

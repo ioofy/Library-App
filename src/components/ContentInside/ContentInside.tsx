@@ -4,7 +4,7 @@ type ContentProps = {
 
 const Content: React.FC<ContentProps> = (props) => {
   return (
-    <div className='w-full bg-gray-50 rounded-2xl mt-5 p-10'>
+    <div className="w-full bg-gray-50 rounded-2xl mt-5 p-10">
       {props.children}
     </div>
   );

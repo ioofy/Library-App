@@ -1,1 +1,1 @@
-export const getToken = sessionStorage.getItem('jwt');
+export const getToken = sessionStorage.getItem("jwt");

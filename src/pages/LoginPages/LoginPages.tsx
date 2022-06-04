@@ -1,16 +1,16 @@
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { patterns } from 'utils/pattern';
-import { DataFromResponse, FormLoginProps } from 'types/declare';
-import { authPending, authSuccess, authFail } from 'app/slice/authSlice';
-import { getMyProfile } from 'app/actions/userAction';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'app/store/store';
-import { authApi } from 'api/authApi';
-import loadable from '@loadable/component';
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { patterns } from "utils/pattern";
+import { DataFromResponse, FormLoginProps } from "types/models";
+import { authPending, authSuccess, authFail } from "app/slice/authSlice";
+import { getMyProfile } from "app/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "app/store/store";
+import { authApi } from "api/authApi";
+import loadable from "@loadable/component";
 
-const TopHeader = loadable(() => import('layout/components/TopHeader'));
-const HelmetEntity = loadable(() => import('components/Helmet/Helmet'));
+const TopHeader = loadable(() => import("layout/components/TopHeader"));
+const HelmetEntity = loadable(() => import("components/Helmet/Helmet"));
 
 const LoginPages = () => {
   const dispatch = useDispatch();
@@ -34,11 +34,11 @@ const LoginPages = () => {
       // 401 unauthorized
       // 200 success
 
-      if (isAuth.data.status === 'error') {
-        toast.error('Invalid Credentials');
+      if (isAuth.data.status === "error") {
+        toast.error("Invalid Credentials");
         return dispatch(authFail(isAuth.data.status));
       } else {
-        sessionStorage.setItem('jwt', isAuth.data.access_token);
+        sessionStorage.setItem("jwt", isAuth.data.access_token);
 
         // dispatch auth that sucessed
         dispatch(authSuccess());
@@ -47,16 +47,16 @@ const LoginPages = () => {
         dispatch(getMyProfile());
 
         // give that toast
-        toast.success('Login success');
+        toast.success("Login success");
       }
 
       const awaitNavigate = setTimeout(function () {
-        window.location.href = '/dashboard';
+        window.location.href = "/dashboard";
       }, 800);
 
       return awaitNavigate;
     } catch (error) {
-      toast.error('Invalid Credentials');
+      toast.error("Invalid Credentials");
       dispatch(authFail(error));
     }
   };
@@ -64,58 +64,58 @@ const LoginPages = () => {
   return (
     <>
       <HelmetEntity
-        title='Welcome | Login first'
-        description='Login to access a feature'
+        title="Welcome | Login first"
+        description="Login to access a feature"
       />
       <TopHeader />
-      <div className='flex items-center justify-center min-h-screen'>
-        <div className='px-10 py-8 mt-4 text-left bg-gray-100 shadow-lg rounded-lg'>
-          <h3 className='text-2xl font-bold text-center block -mt-20 mb-20'>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="px-10 py-8 mt-4 text-left bg-gray-100 shadow-lg rounded-lg">
+          <h3 className="text-2xl font-bold text-center block -mt-20 mb-20">
             Login
           </h3>
           <form onSubmit={handleSubmit(onSubmitForm)}>
-            <div className='mt-4'>
+            <div className="mt-4">
               <div>
-                <label className='block opacity-60' htmlFor='email'>
+                <label className="block opacity-60" htmlFor="email">
                   Email
                 </label>
                 {errors.email && (
-                  <p className='text-red-400'>*Email dibutuhkan</p>
+                  <p className="text-red-400">*Email dibutuhkan</p>
                 )}
                 <input
-                  type='text'
-                  autoComplete='off'
-                  placeholder='Example@yourmail.com'
-                  {...register('email', {
+                  type="text"
+                  autoComplete="off"
+                  placeholder="Example@yourmail.com"
+                  {...register("email", {
                     required: true,
                     pattern: patterns,
                   })}
-                  className='px-12 py-2 mt-2 border rounded-md 
-                focus:outline-none focus:ring-1 focus:ring-blue-600'
+                  className="px-12 py-2 mt-2 border rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
-              <div className='mt-4'>
-                <label className='block opacity-60'>Password</label>
+              <div className="mt-4">
+                <label className="block opacity-60">Password</label>
                 {errors.password && (
-                  <p className='text-red-400'>*Password dibutuhkan</p>
+                  <p className="text-red-400">*Password dibutuhkan</p>
                 )}
                 <input
-                  type='password'
-                  placeholder='7+ strong password'
-                  {...register('password', {
+                  type="password"
+                  placeholder="7+ strong password"
+                  {...register("password", {
                     required: true,
                     minLength: 5,
                   })}
-                  className='px-12 py-2 mt-2 border rounded-md 
-                focus:outline-none focus:ring-1 focus:ring-blue-600'
+                  className="px-12 py-2 mt-2 border rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
               <div>
                 <button
-                  className='px-6 py-2 mt-8 text-white bg-blue-600 
-                rounded-full hover:bg-blue-900 w-full'
+                  className="px-6 py-2 mt-8 text-white bg-blue-600 
+                rounded-full hover:bg-blue-900 w-full"
                 >
-                  {isLoading ? 'Loading...' : 'Login'}
+                  {isLoading ? "Loading..." : "Login"}
                 </button>
               </div>
             </div>
@@ -127,4 +127,3 @@ const LoginPages = () => {
 };
 
 export default LoginPages;
-

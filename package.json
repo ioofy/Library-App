@@ -8,9 +8,6 @@
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "@reduxjs/toolkit": "1.8.1",
-    "@testing-library/jest-dom": "5.16.4",
-    "@testing-library/react": "13.0.0",
-    "@testing-library/user-event": "14.0.4",
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "moment": "2.29.3",
@@ -30,6 +27,9 @@
     "web-vitals": "2.1.4"
   },
   "scripts": {
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "13.0.0",
+    "@testing-library/user-event": "14.0.4",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
