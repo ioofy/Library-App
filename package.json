@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.15.2",
-    "@reduxjs/toolkit": "1.8.1",
+    "@reduxjs/toolkit": "1.8.3",
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "moment": "2.29.3",
